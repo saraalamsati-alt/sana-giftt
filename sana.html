@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Gift Journey for Sana 💖</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body{
+  margin:0;
+  font-family:Poppins,sans-serif;
+  background:linear-gradient(135deg,#ffb6c1,#ffe4e1);
+  overflow-x:hidden;
+}
+
+/* pages */
+.page{
+  display:none;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+.active{display:flex;}
+
+/* card */
+.card{
+  background:rgba(255,255,255,0.3);
+  backdrop-filter:blur(15px);
+  padding:25px;
+  border-radius:20px;
+  width:80%;
+  max-width:520px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* buttons */
+.btn{
+  padding:12px 22px;
+  background:#ff4d88;
+  color:white;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  margin-top:15px;
+}
+.btn:hover{background:#e6005c;}
+
+/* gifts */
+.gift{
+  font-size:65px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.gift:hover{transform:scale(1.2);}
+
+/* inputs */
+input,textarea{
+  width:80%;
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  outline:none;
+  margin-top:10px;
+}
+textarea{height:90px;}
+
+/* 💖 FALLING ANIMATION */
+.fall {
+  position: fixed;
+  top: -50px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ff4d88;
+  animation: fall linear forwards;
+  z-index: 9999;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+  <div class="card">
+    <h2>🔐 Enter Code</h2>
+    <input id="code" type="password" placeholder="****">
+    <button class="btn" onclick="check()">Unlock 💖</button>
+    <p id="err" style="color:red;"></p>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+  <div class="card">
+    <h2>Hi Sana 💖</h2>
+    <button class="btn" onclick="go('p3')">Start 🎁</button>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+  <div class="card">
+    <h2>🎁 Gift</h2>
+    <div class="gift" onclick="gift1()">🎁</div>
+    <p id="m1">Tap gift</p>
+    <button class="btn" onclick="go('p4')">Next ➜</button>
+  </div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+  <div class="card">
+    <h2>💌 Love</h2>
+    <p>I never forget YOU ❤️</p>
+    <button class="btn" onclick="go('p5')">Next ➜</button>
+  </div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="p5">
+  <div class="card">
+    <h2>💞 Memories</h2>
+    <p>💖 First Talk</p>
+    <p>😊 Smile</p>
+    <p>💌 Bond</p>
+    <button class="btn" onclick="go('p6')">Next ➜</button>
+  </div>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="p6">
+  <div class="card">
+    <h2>💝 Gift 2</h2>
+    <div class="gift" onclick="gift2()">💝</div>
+    <p id="m2">Tap</p>
+    <button class="btn" onclick="go('p7')">Next ➜</button>
+  </div>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page" id="p7">
+  <div class="card">
+    <h2>💖 Truth</h2>
+    <p>You are my world 🌍</p>
+    <button class="btn" onclick="go('p8')">Next ➜</button>
+  </div>
+</div>
+
+<!-- PAGE 8 -->
+<div class="page" id="p8">
+  <div class="card">
+    <h2>💖 Gift 3</h2>
+    <div class="gift" onclick="gift3()">💖</div>
+    <p id="m3">Tap</p>
+    <button class="btn" onclick="go('p9')">Next ➜</button>
+  </div>
+</div>
+
+<!-- PAGE 9 -->
+<div class="page" id="p9">
+  <div class="card">
+    <h2>💌 Final</h2>
+    <p>Only YOU 💖</p>
+    <button class="btn" onclick="go('p10')">Final ➜</button>
+  </div>
+</div>
+
+<!-- PAGE 10 -->
+<div class="page" id="p10">
+  <div class="card">
+    <h2>Sana 💖</h2>
+    <p>Send reply 💌</p>
+    <textarea id="msg"></textarea>
+    <button class="btn" onclick="send()">Send WhatsApp 💚</button>
+  </div>
+</div>
+
+<script>
+
+/* navigation */
+function go(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+/* lock */
+function check(){
+  let c=document.getElementById("code").value;
+  if(c==="2502") go("p2");
+  else document.getElementById("err").innerText="Wrong ❌";
+}
+
+/* gifts */
+function gift1(){
+  document.getElementById("m1").innerText="💖 I LOVE YOU KUTTI 🫣";
+  setTimeout(()=>document.getElementById("m1").innerText="🥰 Jaan 😘💞",2000);
+}
+
+function gift2(){
+  document.getElementById("m2").innerText="💝 You are everything 💖";
+}
+
+function gift3(){
+  document.getElementById("m3").innerText="💖 Forever Sana...";
+}
+
+/* whatsapp */
+function send(){
+  let msg=document.getElementById("msg").value;
+  let phone="923358090220";
+  let url="https://wa.me/"+phone+"?text="+encodeURIComponent("💖 "+msg);
+  window.open(url);
+}
+
+/* 💖 FALLING EFFECT */
+function fall(){
+  const texts=["💖 I LOVE SANA 💖","💗","💞","Sana 💕","💖","I LOVE YOU 💖"];
+
+  let el=document.createElement("div");
+  el.className="fall";
+  el.innerText=texts[Math.floor(Math.random()*texts.length)];
+
+  el.style.left=Math.random()*window.innerWidth+"px";
+  el.style.animationDuration=(3+Math.random()*3)+"s";
+  el.style.fontSize=(14+Math.random()*20)+"px";
+
+  document.body.appendChild(el);
+
+  setTimeout(()=>el.remove(),6000);
+}
+
+setInterval(fall,200);
+
+</script>
+
+</body>
+</html>
